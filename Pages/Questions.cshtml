@@ -4,29 +4,34 @@
     <h1 class="display-3">@ViewData["QuestionSet"]</h1>
     @foreach (var quest in Model.Questions)
     {
-    <div class="container" id="ques_@Model.ID_Counter">
-        <h2 class="display-2">@ViewData["Question"]</h2>
-        <p>@quest.QuestionStatement</p>
-        <h2 class="display-2">@ViewData["Answer"]</h2>
-        <p>@quest.Answer</p>
-        <div class="btn-group btn-group-justified" role="group" aria-label="...">
-            <div class="btn-group" role="group">
-                <button type="button" class="btn btn-default"
-                    Click="MarkRightorWrong(this, 'background:green')">@ViewData["btnCorrect"]</button>
-            </div>
-            <div class="btn-group" role="group">
-                <button type="button" class="btn btn-default"
-                    Click="MarkRightorWrong(this, 'background:red')">@ViewData["btnWrong"]</button>
+        <div class="container" id="contain_@quest.id">
+            <h2 class="display-2">@ViewData["Question"] <strong>@quest.id</strong></h2>
+            <p>@quest.QuestionStatement</p>
+            <h2 class="display-2">@ViewData["Answer"]</h2>
+            <p>@quest.Answer</p>
+            <div class="alert alert-success" id="succ_@quest.id" role="alert" style="display:none">@ViewData["btnCorrect"]</div>
+            <div class="alert alert-danger" id="fail_@quest.id" role="alert" style="display:none">@ViewData["btnWrong"]</div>
+            <div class="btn-group btn-group-justified" role="group">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default"
+                            onclick="MarkRightorWrong(this, 'succ_@quest.id', 'fail_@quest.id')">
+                        @ViewData["btnCorrect"]
+                    </button>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default"
+                            onclick="MarkRightorWrong(this, 'fail_@quest.id', 'succ_@quest.id')">
+                        @ViewData["btnWrong"]
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
     }
 </div>
 <script>
-function MarkRightorWrong(elmnt, RorW)
-{
-    //btn -> div -> div -div
-    elmnt.parentNode.style = RorW
-
-}
+    function MarkRightorWrong(elmnt, arg1, arg2) {
+        //btn -> div -> div -div
+        document.getElementById(arg1).style.display = 'block';
+        document.getElementById(arg2).style.display = 'none';
+    }
 </script>

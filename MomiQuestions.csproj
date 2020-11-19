@@ -5,10 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Pages\index.html" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <Folder Include="Pages\Scripts\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
