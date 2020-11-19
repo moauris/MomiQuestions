@@ -1,0 +1,32 @@
+@page
+@model MomiQuestions.Pages.QuestionSetModel
+<div class="jumbotron">
+    <h1 class="display-3">@ViewData["QuestionSet"]</h1>
+    @foreach (var quest in Model.Questions)
+    {
+    <div class="container" id="ques_@Model.ID_Counter">
+        <h2 class="display-2">@ViewData["Question"]</h2>
+        <p>@quest.QuestionStatement</p>
+        <h2 class="display-2">@ViewData["Answer"]</h2>
+        <p>@quest.Answer</p>
+        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default"
+                    Click="MarkRightorWrong(this, 'background:green')">@ViewData["btnCorrect"]</button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default"
+                    Click="MarkRightorWrong(this, 'background:red')">@ViewData["btnWrong"]</button>
+            </div>
+        </div>
+    </div>
+    }
+</div>
+<script>
+function MarkRightorWrong(elmnt, RorW)
+{
+    //btn -> div -> div -div
+    elmnt.parentNode.style = RorW
+
+}
+</script>

@@ -1,0 +1,29 @@
+@page
+@functions
+{
+    public string DayName{get; set;}
+    public void OnGet()
+    {
+        ViewData["Title"] = "宝宝猫&默默猫小窝";
+        ViewData["QuestionSet"] = "ATA、OnBoarding、网络架构理解度测试";
+        Model.DayName = DateTime.Now.ToString("yyyy年MM月dd日");
+    }
+}
+<div class="jumbotron">
+    <h1 class="display-3">
+        欢迎来到本次测试
+    </h1>
+    <hr />
+    <h2 class="display-2">
+        @ViewData["QuestionSet"]
+    </h2>
+
+    <p>今天是 @Model.DayName，我们开始测试吧！</p>
+    <p>点我！点我！点我！</p>
+    
+    <p>
+        <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>
+        <a class="btn btn-primary btn-lg" href="Questions" role="button">开始猫猫测试！</a>
+    </p>
+
+</div>
